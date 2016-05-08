@@ -3,6 +3,9 @@
 ## Introduction
 This example demonstrates Conway's Game of Life running on RIOT-OS, outputting the board via U8glib display and graphics driver.
 
+## Usage
+Assuming you've cloned this repository, run `RIOTBASE=/path/to/RIOT make`, then `RIOTBASE=/path/to/RIOT make term`.
+
 ## Used libraries and modules.
 * xtimer &mdash; time management
 * random &mdash; generate random board
