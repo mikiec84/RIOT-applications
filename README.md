@@ -2,7 +2,7 @@
 My own collection of general-purpose RIOT-OS applications.
 
 ## Applications
-* [Game of Life](game_of_life/) &mdash; Conway's Game of Life using U8Glib.
+* [Game of Life](game_of_life/) &mdash; Conway's Game of Life using U8g2.
 
 ## RIOT-OS
 RIOT-OS is an Internet-of-Things (IoT) operation system that focusses on tiny embedded devices. It runs an efficient OS with a wide range of features and connectivity solutions.

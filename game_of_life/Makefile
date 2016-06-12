@@ -7,12 +7,10 @@ BOARD ?= native
 RIOTBASE ?= $(CURDIR)/../..
 
 # Modules and packages:
+USEPKG += u8g2
+
 USEMODULE += xtimer
 USEMODULE += random
-
-USEPKG += u8glib
-
-# Display settings:
-CFLAGS += -DU8G_STDOUT_ANSI
+USEMODULE += u8g2_utf8
 
 include $(RIOTBASE)/Makefile.include

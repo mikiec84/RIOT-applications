@@ -6,12 +6,12 @@
 #include <stdio.h>
 
 #include "random.h"
-#include "u8g.h"
+#include "u8g2.h"
 #include "xtimer.h"
 
 /* game settings */
-#define BOARD_WIDTH     (96)
-#define BOARD_HEIGHT	(32)
+#define BOARD_WIDTH     (102)
+#define BOARD_HEIGHT    (32)
 
 #define BOARD_CLUSTERS  (32)
 #define BOARD_SEED      (98374912)
@@ -121,33 +121,35 @@ void play(uint8_t board[][BOARD_HEIGHT]) {
 }
 
 /* print the life board */
-void print(uint8_t board[][BOARD_HEIGHT], u8g_t* u8g) {
+void print(uint8_t board[][BOARD_HEIGHT], u8g2_t* u8g2) {
     int	i, j;
 
     /* print each row and column position */
-    u8g_FirstPage(u8g);
+    u8g2_FirstPage(u8g2);
 
     do {
         for (j = 0; j < BOARD_HEIGHT; j++) {
             for (i = 0; i < BOARD_WIDTH; i++) {
                 if (board[i][j] == 1) {
-                    u8g_DrawPixel(u8g, i, j);
+                    u8g2_DrawPixel(u8g2, i, j);
                 }
             }
         }
-    } while (u8g_NextPage(u8g));
+    } while (u8g2_NextPage(u8g2));
+
+    /* transfer screen buffer to stdout */
+    utf8_show();
 }
 
 /* main program */
 int main(void) {
     uint8_t	board[BOARD_WIDTH][BOARD_HEIGHT];
-    u8g_t u8g;
+    u8g2_t u8g2;
 
     /* initialize the display */
-    if (u8g_init_stdout(&u8g) != 0) {
-        puts("Failed to initialize U8glib to stdout.");
-        return -1;
-    }
+    u8g2_SetupBuffer_Utf8(&u8g2, U8G2_R0);
+    u8g2_InitDisplay(&u8g2);
+    u8g2_SetPowerSave(&u8g2, 0);
 
     /* explicitly seed the prng */
     random_init(BOARD_SEED);
@@ -157,7 +159,7 @@ int main(void) {
 
     /* keep on playing the game */
     while (1) {
-        print(board, &u8g);
+        print(board, &u8g2);
         play(board);
 
         xtimer_usleep(100 * 1000);

@@ -1,7 +1,7 @@
 # Game of Life
 
 ## Introduction
-This example demonstrates Conway's Game of Life running on RIOT-OS, outputting the board via U8glib display and graphics driver.
+This example demonstrates Conway's Game of Life running on RIOT-OS, outputting the board via the U8g2 display and graphics driver.
 
 ![Game of Life](image.png)
 
@@ -11,7 +11,7 @@ Assuming you've cloned this repository, run `RIOTBASE=/path/to/RIOT make`, then 
 ## Used libraries and modules.
 * xtimer &mdash; time management
 * random &mdash; generate random board
-* u8glib &mdash; display driver (to stdout)
+* u8g2 &mdash; display driver (to stdout)
 
 ## Game rules
 The following rules apply to the game:
