@@ -16,6 +16,10 @@
 #define BOARD_CLUSTERS  (32)
 #define BOARD_SEED      (98374912)
 
+/* board (and newboard) are declared in advance */
+uint8_t	board[BOARD_WIDTH][BOARD_HEIGHT];
+uint8_t newboard[BOARD_WIDTH][BOARD_HEIGHT];
+
 /* initialize a new board */
 void initialize_board(uint8_t board[][BOARD_HEIGHT]) {
     int	i, j, k;
@@ -90,7 +94,7 @@ int adjacent_to(uint8_t board[][BOARD_HEIGHT], int i, int j) {
 
 /* play one iteration of the game */
 void play(uint8_t board[][BOARD_HEIGHT]) {
-    int	i, j, a, newboard[BOARD_WIDTH][BOARD_HEIGHT];
+    int	i, j, a;
 
     /* for each cell, apply the rules of Life */
     for (i = 0; i < BOARD_WIDTH; i++) {
@@ -143,7 +147,6 @@ void print(uint8_t board[][BOARD_HEIGHT], u8g2_t* u8g2) {
 
 /* main program */
 int main(void) {
-    uint8_t	board[BOARD_WIDTH][BOARD_HEIGHT];
     u8g2_t u8g2;
 
     /* initialize the display */
